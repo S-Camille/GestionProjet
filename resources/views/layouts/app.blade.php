@@ -45,7 +45,7 @@
                     <ul class="nav navbar-nav navbar-right">
                         <!-- Authentication Links -->
                         @guest
-                            <li><a href="{{ route('login') }}">Connection</a></li>
+                            <li><a href="{{ route('login') }}">Connexion</a></li>
                             <li><a href="{{ url('type_selection') }}">Enregistrement</a></li>
                         @else
                             <li class="dropdown">
