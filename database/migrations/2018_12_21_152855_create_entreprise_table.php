@@ -14,11 +14,17 @@ class CreateEntrepriseTable extends Migration
     public function up()
     {
         Schema::create('entreprise', function (Blueprint $table) {
-            $table->increments('id');
+            $table->uuid('id');
+            $table->uuid('id_gerant');
             $table->string('nom')->unique();
+            $table->string('voirie',255);
+            $table->string('ville',255);
+            $table->string('code_postal',5);
             $table->string('statut'); // commanditaire OU soumissionnaire
             $table->string('siret');
             $table->integer('effectif');
+            $table->primary('id');
+            $table->foreign('id_gerant')->references('id')->on('users');
             $table->timestamps();
         });
     }

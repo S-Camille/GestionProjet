@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateUsersTable extends Migration
+class CreateAppelOffreTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,16 +13,15 @@ class CreateUsersTable extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('appel_offre', function (Blueprint $table) {
             $table->uuid('id');
-            $table->string('firstname',255);
-            $table->string('lastname',255);
-            $table->string('telephone',255)->unique();
-            $table->text('presentation');
-            $table->string('email',255)->unique();
-            $table->string('password',255);
+            $table->uuid('id_commanditaire');
+            $table->string('titre,255');
+            $table->text('description');
+            $table->date('date_debut');
+            $table->date('date_fin');
             $table->primary('id');
-            $table->rememberToken();
+            $table->foreign('id_commanditaire')->references('id')->on('entreprise');
             $table->timestamps();
         });
     }
@@ -34,6 +33,6 @@ class CreateUsersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('appel_offre');
     }
 }
