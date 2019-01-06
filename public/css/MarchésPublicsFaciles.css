@@ -1,0 +1,39 @@
+.centerText,.choice-btn{
+    text-align: center;
+}
+
+.flex-container{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.choice-btn{
+    display: flex;
+    cursor: pointer;
+    font-size:2em;
+    font-weight: bold;
+    border:1px solid black;
+    padding:1em;
+    border-radius: 0.2em;
+    transition-duration: 0.5s;
+    color:darkgrey;
+}
+
+.choice-btn:hover{
+    background-color: brown;
+    color:white;
+    text-decoration: none;
+}
+
+.choice-btn:focus{    
+    text-decoration: none;
+}
+
+.navbar-brand{
+    transition: 0.5s;
+}
+
+.navbar-brand:hover{
+    text-shadow: 0em 0em 0.1em;    
+}
