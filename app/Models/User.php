@@ -9,13 +9,17 @@ class User extends Authenticatable
 {
     use Notifiable;
 
+    protected $table = "users";
+    protected $keyType = "string";
+    protected $incrementing = false;
+
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'firstname', 'lastname', 'email','telephone','presentation','password'
     ];
 
     /**
@@ -26,4 +30,12 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function findAll(){
+        return $this::all();
+    }
+
+    public function findById($id){
+        return $this::find($id);
+    }
 }

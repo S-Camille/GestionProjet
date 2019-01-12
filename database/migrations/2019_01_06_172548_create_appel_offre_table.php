@@ -16,7 +16,7 @@ class CreateAppelOffreTable extends Migration
         Schema::create('appel_offre', function (Blueprint $table) {
             $table->uuid('id');
             $table->uuid('id_commanditaire');
-            $table->string('titre,255');
+            $table->string('titre',255);
             $table->text('description');
             $table->date('date_debut');
             $table->date('date_fin');
