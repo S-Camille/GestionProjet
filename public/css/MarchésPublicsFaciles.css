@@ -8,6 +8,10 @@
     justify-content: space-evenly;
 }
 
+.column{
+    flex-direction: column;
+}
+
 .choice-btn{
     display: flex;
     cursor: pointer;

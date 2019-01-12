@@ -9,10 +9,10 @@ class Entreprise extends Model
 {
     protected $table = "entreprise";
     protected $keyType = "string";
-    protected $incrementing = false;
+    public $incrementing = false;
 
     protected $fillable = [
-        'nom', 'statut', 'siret','effectif'
+        'id','id_gerant','nom','voirie','ville','siret','effectif','code_postal'
     ];
 
     public function findAll(){

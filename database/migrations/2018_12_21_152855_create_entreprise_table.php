@@ -19,8 +19,7 @@ class CreateEntrepriseTable extends Migration
             $table->string('nom')->unique();
             $table->string('voirie',255);
             $table->string('ville',255);
-            $table->string('code_postal',5);
-            $table->string('statut'); // commanditaire OU soumissionnaire
+            $table->string('code_postal',5);            
             $table->string('siret');
             $table->integer('effectif');
             $table->primary('id');
