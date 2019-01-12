@@ -6,6 +6,7 @@ use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Webpatser\Uuid\Uuid;
 
 class RegisterController extends Controller
 {
@@ -49,10 +50,8 @@ class RegisterController extends Controller
     {
         return Validator::make($data, [
             'name' => 'required|string|max:255',
-            'surname' => 'required|string|max:255',
-            'adresse' => 'required|string|max:255',   
-            'code_postal' => 'required|integer|max:5',
-            'téléphone' => 'required|integer|max:10',            
+            'surname' => 'required|string|max:255',           
+            'téléphone' => 'required|string|max:10',            
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6|confirmed'                                  
         ]);
@@ -65,14 +64,14 @@ class RegisterController extends Controller
      * @return \App\User
      */
     protected function create(array $data)
-    {
+    {        
         return User::create([
-            'surname' => $data['name'],
-            'name' => $data['name'],
-            'adresse' => $data['adresse'],   
-            'code_postal' => $data['code_postal'],
-            'téléphone' => $data['téléphone'],  
-            'email' => $data['email'],            
+            'id' => Uuid::generate(),
+            'presentation' => $data['presentation'],
+            'firstname' => $data['surname'],
+            'lastname' => $data['name'],            
+            'telephone' => $data['téléphone'],  
+            'email' => $data['email'],
             'password' => bcrypt($data['password']),
         ]);
     }

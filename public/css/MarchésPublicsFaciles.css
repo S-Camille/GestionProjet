@@ -37,3 +37,9 @@
 .navbar-brand:hover{
     text-shadow: 0em 0em 0.1em;    
 }
+
+.obligatoire:after{
+    content:"*";
+    color:red;
+    font-size:1.3em;
+}
