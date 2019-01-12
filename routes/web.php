@@ -12,8 +12,22 @@
 */
 
 Route::get('/', function () {
-    return redirect('/home');
+    // test pour voir si on réussi à interroger le programme à la route /
+    return User::create([
+        'firstname' => 'Jane',
+        'telephone' => '00000000',
+        'email' => 'john@jane.com',
+        'password' => bcrypt('password'),
+    ]);
 });
+Route::resources([
+    "User" => "UserController",
+    "Entreprise" => "EntrepriseController",
+    "Attestation" => "AttestationController",
+    "SoumissionAO" => "SoumissionAOController",
+    "AppelOffre" => "AOController",
+    "ExerciceComptable" => "ExComptableController"
+]);
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
