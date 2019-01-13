@@ -21,7 +21,7 @@ class CreateAppelOffreTable extends Migration
             $table->date('date_debut');
             $table->date('date_fin');
             $table->primary('id');
-            $table->foreign('id_commanditaire')->references('id')->on('entreprise');
+            $table->foreign('id_commanditaire')->references('id')->on('structure');
             $table->timestamps();
         });
     }

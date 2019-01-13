@@ -24,7 +24,7 @@ class CreateExComptableTable extends Migration
             $table->string('lien_assurance',255);
             $table->string('lien_qualifPro',255);
             $table->primary('id');
-            $table->foreign('id_entreprise')->references('id')->on('entreprise');
+            $table->foreign('id_entreprise')->references('id')->on('structure');
             $table->timestamps();
         });
     }
