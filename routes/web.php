@@ -41,3 +41,5 @@ Route::post('/register_structure','registerStructureController@create')->name('r
 
 Route::get('/register_ex_comptable','registerExComptableController@index')->name('register_ex_comptable');
 Route::post('/creation_ex_comptable','registerExComptableController@create')->name('creation_ex_comptable');
+
+Route::get('/profil/{id}','profilController@index')->name('profil');

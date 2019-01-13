@@ -12,7 +12,7 @@ class User extends Authenticatable
 
     protected $table = "users";
     protected $keyType = "string";
-    protected $incrementing = false;
+    public $incrementing = false;
     public $errors = [];
 
 

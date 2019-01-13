@@ -47,3 +47,14 @@
     color:red;
     font-size:1.3em;
 }
+
+.bigFont{
+    font-weight: bold;
+    font-size: 1.5em;
+}
+
+.list{
+    height: 370px;
+    max-height: 370px;
+    overflow: auto;
+}

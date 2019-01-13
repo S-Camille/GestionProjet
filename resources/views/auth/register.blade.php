@@ -54,10 +54,10 @@ Enregistrement
     <div class="form-group{{ $errors->has('statut') ? ' has-error' : '' }}">
         <label for="statut" class="col-md-4 control-label obligatoire">Statut</label>
 
-        <div class="col-md-6">
-            <select id="statut" maxlength="10" class="form-control" name="statut" value="{{ old('statut') }}" required>
-                <option value="commanditaire">Commanditaire</option>
-                <option value="soumissionnaire">Soumissionnaire</option>
+        <div class="col-md-6">                                    
+            <select id="statut" maxlength="10" class="form-control" name="statut" value="{{ old('statut') }}" required>            
+                <option value="commanditaire">Maître d'ouvrage</option>
+                <option value="soumissionnaire">Gérant d'entreprise</option>
             </select>
 
             @if ($errors->has('statut'))
