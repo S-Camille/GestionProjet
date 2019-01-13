@@ -5,14 +5,14 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use App\Traits\Uuids;
 
-class Entreprise extends Model
+class Structure extends Model
 {
-    protected $table = "entreprise";
+    protected $table = "structure";
     protected $keyType = "string";
     public $incrementing = false;
 
     protected $fillable = [
-        'id','id_gerant','nom','voirie','ville','siret','effectif','code_postal'
+        'id','id_representant','statut','nom','voirie','ville','siret','effectif','code_postal',
     ];
 
     public function findAll(){

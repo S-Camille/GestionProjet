@@ -26,8 +26,13 @@
                             <div>Entreprise et exercice comptable renseignés !</div>
                             @endif
                         @elseif(session('type_personne')=="commanditaire")
+                            @if(session('no_structure'))
                             <div>Avant toute chose veuillez renseigner votre lieu de travail</div>
                             <a class="choice-btn" href="{{ route('register_structure') }}">Ajouter mon lieu de travail</a>
+                            @else
+                            <div>Lieu de travail renseigné !</div>
+                            @endif
+
                         @endif
                         </div>                        
                     </div>

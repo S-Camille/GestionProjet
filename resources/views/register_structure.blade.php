@@ -35,7 +35,7 @@
 
             <div class="col-md-6">
                 <select id="type_structure" type="text" class="form-control" name="type_structure" value="{{ old('type_structure') }}" required autofocus>
-                    <option>Mairie</option>
+                    <option value="Mairie">Mairie</option>
                 </select>
 
                 @if ($errors->has('type_structure'))
@@ -89,6 +89,7 @@
         </div>
     </div>
 
+    @if(session('type_personne')=="soumissionnaire")
     <div class="form-group{{ $errors->has('siret') ? ' has-error' : '' }}">
         <label for="siret" class="col-md-4 control-label obligatoire">Numéro de siret</label>
 
@@ -102,6 +103,7 @@
             @endif
         </div>
     </div>
+    @endif
 
     <div class="form-group{{ $errors->has('effectif') ? ' has-error' : '' }}">
         <label for="effectif" class="col-md-4 control-label obligatoire">Effectif</label>

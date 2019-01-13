@@ -28,10 +28,11 @@ class HomeController extends Controller
         if(Auth::check()){
             $statutResult = DB::table('users')->select('statut')->where('id',Auth::id())->pluck('statut');
             $type_personne=$statutResult[0];
-
-            if($type_personne=='soumissionnaire'){ 
-                $hasEntreprise = DB::table('entreprise')->select('id')->where('id_gerant',Auth::id())->pluck('id');
-                session(['no_structure' => (sizeof($hasEntreprise)==0)]);
+        
+            $hasEntreprise = DB::table('structure')->select('id')->where('id_representant',Auth::id())->pluck('id');
+            session(['no_structure' => (sizeof($hasEntreprise)==0)]);
+            
+                if($type_personne=='soumissionnaire'){ 
                 if(isset($hasEntreprise[0])){
                     $hasExComptable = DB::table('exercice_comptable')->select('id')->where('id_entreprise',$hasEntreprise[0])->pluck('id');
                     session(['no_ex_comptable' => (sizeof($hasExComptable)==0)]);
