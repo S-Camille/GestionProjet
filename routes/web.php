@@ -39,5 +39,5 @@ Route::view('/type_selection', 'type_selection');
 Route::get('/register_structure','registerStructureController@index')->name('register_structure');
 Route::post('/register_structure','registerStructureController@create')->name('register_structureCreation');
 
-Route::get('/register_ex_comptable','registerStructureController@index')->name('register_ex_comptable');
-Route::post('/creation_ex_comptable','registerStructureController@create')->name('creation_ex_comptable');
+Route::get('/register_ex_comptable','registerExComptableController@index')->name('register_ex_comptable');
+Route::post('/creation_ex_comptable','registerExComptableController@create')->name('creation_ex_comptable');

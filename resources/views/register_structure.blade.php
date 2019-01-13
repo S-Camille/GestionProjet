@@ -2,9 +2,9 @@
 
 @section('formName')
 
-    @if(session('type_personne')=='commanditaire')
+    @if(session('type_personne')=='soumissionnaire')
     Enregistrement d'entreprise    
-    @elseif(session('type_personne')=='soumissionnaire')
+    @elseif(session('type_personne')=='commanditaire')
     Enregistrement du lieu de travail        
     @endif
 

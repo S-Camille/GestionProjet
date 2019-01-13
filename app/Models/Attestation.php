@@ -9,7 +9,7 @@ class Attestation extends Model
 {
     protected $table = "attestation";
     protected $keyType = "string";
-    protected $incrementing = false;
+    public $incrementing = false;
 
     protected $fillable = [
         'type', 'is_valid', 'lien',

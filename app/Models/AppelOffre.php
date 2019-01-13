@@ -9,7 +9,7 @@ class AppelOffre extends Model
 {
     protected $table = "appel_offre";
     protected $keyType = "string";
-    protected $incrementing = false;
+    public $incrementing = false;
     
     protected $fillable = [
         'titre', 'description', 'date_debut','date_fin'

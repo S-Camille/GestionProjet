@@ -38,6 +38,8 @@ class HomeController extends Controller
                     $hasExComptable = DB::table('exercice_comptable')->select('id')->where('id_entreprise',$hasEntreprise[0])->pluck('id');
                     if(!isset($hasExComptable[0])){
                         session(['no_ex_comptable' => true]);
+                    }else{
+                        session(['no_ex_comptable' => false]);
                     }
                 }
             }
