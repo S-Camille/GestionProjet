@@ -36,6 +36,9 @@ class HomeController extends Controller
                 if(isset($hasEntreprise[0])){
                     $hasExComptable = DB::table('exercice_comptable')->select('id')->where('id_entreprise',$hasEntreprise[0])->pluck('id');
                     session(['no_ex_comptable' => (sizeof($hasExComptable)==0)]);
+                    if(isset($hasExComptable[0])){
+                        return redirect(action('listAppelOffreController@index'));
+                    }
                 }
             }
             
