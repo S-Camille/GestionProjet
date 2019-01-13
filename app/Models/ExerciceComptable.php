@@ -25,7 +25,7 @@ class ExerciceComptable extends Model
 
     public function isValid(){
         if(empty($this->id_entreprise)){
-            $this->errors[] = _("Vous devez choisir l'entreprise concerné par cet exercice comptable");
+            $this->errors[] = _("Vous devez choisir l'entreprise concernée par cet exercice comptable");
         }
         if(empty($this->annee)){
             $this->errors[] = _("Vous devez choisir une année pour cet exercice comptable");

@@ -33,14 +33,17 @@ class HomeController extends Controller
             session(['no_structure' => (sizeof($hasEntreprise)==0)]);
             
                 if($type_personne=='soumissionnaire'){ 
-                if(isset($hasEntreprise[0])){
-                    $hasExComptable = DB::table('exercice_comptable')->select('id')->where('id_entreprise',$hasEntreprise[0])->pluck('id');
-                    session(['no_ex_comptable' => (sizeof($hasExComptable)==0)]);
-                    if(isset($hasExComptable[0])){
-                        return redirect(action('listAppelOffreController@index'));
+                    if(isset($hasEntreprise[0])){
+                        $hasExComptable = DB::table('exercice_comptable')->select('id')->where('id_entreprise',$hasEntreprise[0])->pluck('id');
+                        session(['no_ex_comptable' => (sizeof($hasExComptable)==0)]);
+                        if(isset($hasExComptable[0])){
+                            return redirect(action('listAppelOffreController@index'));
+                        }
                     }
+                }else if(isset($hasEntreprise[0])){
+                    $id = DB::table('structure')->select('id')->where('id_representant',Auth::id())->get()[0]->id;
+                    return redirect(route('profil',array('id'=>$id)));
                 }
-            }
             
             session(['type_personne' => $type_personne]);
         }
