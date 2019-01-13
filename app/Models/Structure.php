@@ -24,6 +24,9 @@ class Entreprise extends Model
     }
 
     public function isValid(){
+        if(empty($this->id_representant)){
+            $this->errors[] = _('Vous devez choisir un représentant pour cette structure');
+        }
         if(empty($this->nom)){
             $this->errors[] = _('Vous devez rentrer un nom d\'entreprise');
         }

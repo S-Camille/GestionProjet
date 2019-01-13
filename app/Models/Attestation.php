@@ -24,6 +24,9 @@ class Attestation extends Model
     }
 
     public function isValid(){
+        if(empty($this->id_entreprise)){
+            $this->errors[] = _('Vous devez choisir une entreprise concerné par cette attestation');
+        }
         if(empty($this->type)){
             $this->errors[] = _('Vous devez rentrer un type d\'attestation');
         }
