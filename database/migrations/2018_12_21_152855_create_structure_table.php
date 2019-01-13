@@ -17,6 +17,7 @@ class CreateEntrepriseTable extends Migration
             $table->uuid('id');
             $table->uuid('id_representant');
             $table->string('nom')->unique();
+            $table->boolean('statut');
             $table->string('voirie',255);
             $table->string('ville',255);
             $table->string('code_postal',5);            
