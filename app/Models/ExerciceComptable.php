@@ -22,4 +22,18 @@ class ExerciceComptable extends Model
     public function findById($id){
         return $this::find($id);
     }
+
+    public function isValid(){
+        if(empty($this->id_entreprise)){
+            $this->errors[] = _("Vous devez choisir l'entreprise concerné par cet exercice comptable");
+        }
+        if(empty($this->annee)){
+            $this->errors[] = _("Vous devez choisir une année pour cet exercice comptable");
+        }
+        if(empty($this->chiffre)){
+            $this->errors[] = _('Vous devez rentrer un chiffre pour cet exercice comptable');
+        }
+        
+        return empty($this->errors);
+    }
 }
