@@ -20,7 +20,7 @@ class CreateAttestationTable extends Migration
             $table->boolean('is_valid')->default(false);
             $table->string('lien',255);
             $table->primary('id');
-            $table->foreign('id_entreprise')->references('id')->on('entreprise');
+            $table->foreign('id_entreprise')->references('id')->on('structure');
             $table->timestamps();
         });
     }
