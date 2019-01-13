@@ -13,17 +13,17 @@ class CreateEntrepriseTable extends Migration
      */
     public function up()
     {
-        Schema::create('entreprise', function (Blueprint $table) {
+        Schema::create('structure', function (Blueprint $table) {
             $table->uuid('id');
-            $table->uuid('id_gerant');
+            $table->uuid('id_representant');
             $table->string('nom')->unique();
             $table->string('voirie',255);
             $table->string('ville',255);
             $table->string('code_postal',5);            
-            $table->string('siret');
-            $table->integer('effectif');
+            $table->string('siret')->nullable();
+            $table->integer('effectif')->nullable();
             $table->primary('id');
-            $table->foreign('id_gerant')->references('id')->on('users');
+            $table->foreign('id_representant')->references('id')->on('users');
             $table->timestamps();
         });
     }
@@ -35,6 +35,6 @@ class CreateEntrepriseTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('entreprise');
+        Schema::dropIfExists('structure');
     }
 }

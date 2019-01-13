@@ -22,4 +22,26 @@ class Entreprise extends Model
     public function findById($id){
         return $this::find($id);
     }
+
+    public function isValid(){
+        if(empty($this->nom)){
+            $this->errors[] = _('Vous devez rentrer un nom d\'entreprise');
+        }
+        if(empty($this->voirie)){
+            $this->errors[] = _('Vous devez rentrer un numéro et nim de rue');
+        }
+        if(empty($this->ville)){
+            $this->errors[] = _('Vous devez rentrer une ville');
+        }
+        if(empty($this->code_postal)){
+            $this->errors[] = _('Vous devez rentrer un code postal');
+        }
+        if(empty($this->siret)){
+            $this->errors[] = _('Vous devez indiquer le numéro de siret de l\'entreprise');
+        }
+        if(empty($this->effectif)){
+            $this->errors[] = _('Vous devez rentrer un effectif');           
+        }
+        return empty($this->errors);
+    }
 }
