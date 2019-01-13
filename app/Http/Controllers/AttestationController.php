@@ -13,8 +13,8 @@ class AttestationController extends Controller
      */
     public function index()
     {
-        //
-    }
+        $liste = DB::table('attestation')->get();
+        return view('attestationListe', compact('liste'));    }
 
     /**
      * Show the form for creating a new resource.
@@ -34,7 +34,11 @@ class AttestationController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        DB::table('attestation')->insert([
+            ['id_entreprise' => $request->input('id_entreprise'),
+            'type' => $request->input('type'),
+            'lien' => $request->input('lien')]
+        ]);
     }
 
     /**
@@ -45,7 +49,8 @@ class AttestationController extends Controller
      */
     public function show($id)
     {
-        //
+        $attestation = DB::table('attestation')->where('id', '=', $id)->get();
+        return view('attestation', compact('attestation'));
     }
 
     /**
@@ -68,7 +73,15 @@ class AttestationController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        DB::table('attestation')
+            ->where('id', $id)
+            ->update(['type' => $request->input('type')]);
+        
+        DB::table('attestation')
+            ->where('id', $id)
+            ->update(['lien' => $request->input('lien')]);
+        
+        return AttestationController::show($id);
     }
 
     /**
@@ -79,6 +92,7 @@ class AttestationController extends Controller
      */
     public function destroy($id)
     {
-        //
+        DB::table('attestation')->where('id', $id)->delete();
+        return redirect(url('/AttestationList'));
     }
 }

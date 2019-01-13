@@ -13,8 +13,8 @@ class ExComptableController extends Controller
      */
     public function index()
     {
-        //
-    }
+        $liste = DB::table('exercice_comptable')->get();
+        return view('ExComptableList', compact('liste'));       }
 
     /**
      * Show the form for creating a new resource.
@@ -34,7 +34,13 @@ class ExComptableController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        DB::table('exercice_comptable')->insert([
+            ['id_structure' => $request->input('id_structure'), 
+             'annee' => $request->input('anne'),
+             'chiffre' => $request->input('chiffre'),]
+        ]);
+        
+        return redirect(url('/ExComptableList'));
     }
 
     /**
@@ -45,7 +51,8 @@ class ExComptableController extends Controller
      */
     public function show($id)
     {
-        //
+        $exC = DB::table('exercice_comptable')->where('id', '=', $id)->get();
+        return view('exComptable', compact('exC'));
     }
 
     /**
@@ -68,7 +75,15 @@ class ExComptableController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        DB::table('exercice_comptable')
+            ->where('id', $id)
+            ->update(['annee' => $request->input('annee')]);
+        
+        DB::table('exercice_comptable')
+            ->where('id', $id)
+            ->update(['chiffre' => $request->input('chiffre')]);
+        
+        return ExComptableController::show($id);
     }
 
     /**
@@ -79,6 +94,7 @@ class ExComptableController extends Controller
      */
     public function destroy($id)
     {
-        //
+        DB::table('exercice_comptable')->where('id', $id)->delete();
+        return redirect(url('/ExComptableList'));    
     }
 }

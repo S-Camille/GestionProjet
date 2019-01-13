@@ -13,7 +13,11 @@ class SoumissionAOController extends Controller
      */
     public function index()
     {
-        //
+        $liste = DB::table('soumission_appelOffre')
+            ->where('id_soumissionnaire', Auth::user()->id)
+            //->orWhere('id_appelOffre', Auth::user()->id)   
+            ->get();
+        return view('SoumissionAOList', compact('liste'));       
     }
 
     /**
@@ -34,8 +38,12 @@ class SoumissionAOController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
+        DB::table('soumission_appelOffre')->insert([
+            ['id_appelOffre' => $request->input('id_appelOffre'), 
+             'id_soumissionnaire' => $request->input('id_soumissionnaire'),]
+        ]);
+        
+        return redirect(url('/SoumissionAOList'));    }
 
     /**
      * Display the specified resource.
@@ -45,7 +53,8 @@ class SoumissionAOController extends Controller
      */
     public function show($id)
     {
-        //
+        $soumission = DB::table('soumission_appelOffre')->where('id', '=', $id)->get();
+        return view('soumissionAO', compact('soumission'));
     }
 
     /**
@@ -79,6 +88,8 @@ class SoumissionAOController extends Controller
      */
     public function destroy($id)
     {
-        //
-    }
+        DB::table('soumission_appelOffre')
+            ->where('id', $id)->delete();
+        
+        return redirect(url('/SoumissionAOList'));    }
 }

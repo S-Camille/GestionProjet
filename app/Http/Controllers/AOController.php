@@ -14,7 +14,7 @@ class AOController extends Controller
     public function index()
     {
         $liste = DB::table('appel_offre')->get();
-        return view('appelOffreListe', compact('liste'));
+        return view('appelOffreList', compact('liste'));
     }
 
     /**
@@ -79,19 +79,19 @@ class AOController extends Controller
     public function update(Request $request, $id)
     {
         DB::table('appel_offre')
-            ->where('id', $request->input('id'))
+            ->where('id', $id)
             ->update(['titre' => $request->input('titre')]);
         
         DB::table('appel_offre')
-            ->where('id', $request->input('id'))
+            ->where('id', $id)
             ->update(['description' => $request->input('description')]);
         
         DB::table('appel_offre')
-            ->where('id', $request->input('id'))
+            ->where('id', $id)
             ->update(['date_debut' => $request->input('date_debut')]);
         
         DB::table('appel_offre')
-            ->where('id', $request->input('id'))
+            ->where('id', $id)
             ->update(['date_fin' => $request->input('date_fin')]);
         
         return AOController::show($id);

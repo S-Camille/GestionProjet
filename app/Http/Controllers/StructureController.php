@@ -13,7 +13,8 @@ class StructureController extends Controller
      */
     public function index()
     {
-        //
+        $liste = DB::table('structure')->get();
+        return view('StructureList', compact('liste'));    
     }
 
     /**
@@ -37,6 +38,7 @@ class StructureController extends Controller
         DB::table('structure')->insert([
             ['id_gerant' => Auth::user()->id, 
              'nom' => $request->input('nom'),
+             'statut' => $request->input('statut'),
              'voirie' => $request->input('voirie') , 
              'ville' => $request->input('ville'), 
              'code_postal' => $request->input('code_postal'),
@@ -45,7 +47,6 @@ class StructureController extends Controller
         ]);
         
         return redirect(url('/StructureList'));
-    }
     }
 
     /**
@@ -81,27 +82,27 @@ class StructureController extends Controller
     public function update(Request $request, $id)
     {
         DB::table('structure')
-            ->where('id', $request->input('id'))
+            ->where('id', $id)
             ->update(['nom' => $request->input('nom')]);
         
         DB::table('structure')
-            ->where('id', $request->input('id'))
+            ->where('id', $id)
             ->update(['voirie' => $request->input('voirie')]);
         
         DB::table('structure')
-            ->where('id', $request->input('id'))
+            ->where('id', $id)
             ->update(['ville' => $request->input('ville')]);
         
         DB::table('structure')
-            ->where('id', $request->input('id'))
+            ->where('id', $id)
             ->update(['code_potal' => $request->input('code-postal')]);
         
         DB::table('structure')
-            ->where('id', $request->input('id'))
+            ->where('id', $id)
             ->update(['siret' => $request->input('siret')]);
         
         DB::table('structure')
-            ->where('id', $request->input('id'))
+            ->where('id', $id)
             ->update(['effectif' => $request->input('effectif')]);
         
         return StructureController::show($id);
