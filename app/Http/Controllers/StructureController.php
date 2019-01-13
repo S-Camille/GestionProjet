@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class AOController extends Controller
+class StructureController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,8 +13,7 @@ class AOController extends Controller
      */
     public function index()
     {
-        $liste = DB::table('appel_offre')->get();
-        return view('appelOffreListe', compact('liste'));
+        //
     }
 
     /**
@@ -35,15 +34,18 @@ class AOController extends Controller
      */
     public function store(Request $request)
     {
-        DB::table('appel_offre')->insert([
-            ['id_commanditaire' => Auth::user()->id, 
-             'titre' => $request->input('titre'),
-             'description' => $request->input('description') , 
-             'date_debut' => $request->input('date_debut'), 
-             'date_fin' => $request>input('date_fin')]
+        DB::table('structure')->insert([
+            ['id_gerant' => Auth::user()->id, 
+             'nom' => $request->input('nom'),
+             'voirie' => $request->input('voirie') , 
+             'ville' => $request->input('ville'), 
+             'code_postal' => $request->input('code_postal'),
+             'siret' => $request->input('siret'),
+             'effectif' => $request->input('effectif'),]
         ]);
         
-        return redirect(url('/AppelOffreList'));
+        return redirect(url('/StructureList'));
+    }
     }
 
     /**
@@ -54,8 +56,8 @@ class AOController extends Controller
      */
     public function show($id)
     {
-        $ao = DB::table('appel_offre')->where('id', '=', $id)->get();
-        return view('appelOffre', compact('ao'));
+        $structure = DB::table('structure')->where('id', '=', $id)->get();
+        return view('structure', compact('strucure'));
     }
 
     /**
@@ -78,23 +80,31 @@ class AOController extends Controller
      */
     public function update(Request $request, $id)
     {
-        DB::table('appel_offre')
+        DB::table('structure')
             ->where('id', $request->input('id'))
-            ->update(['titre' => $request->input('titre')]);
+            ->update(['nom' => $request->input('nom')]);
         
-        DB::table('appel_offre')
+        DB::table('structure')
             ->where('id', $request->input('id'))
-            ->update(['description' => $request->input('description')]);
+            ->update(['voirie' => $request->input('voirie')]);
         
-        DB::table('appel_offre')
+        DB::table('structure')
             ->where('id', $request->input('id'))
-            ->update(['date_debut' => $request->input('date_debut')]);
+            ->update(['ville' => $request->input('ville')]);
         
-        DB::table('appel_offre')
+        DB::table('structure')
             ->where('id', $request->input('id'))
-            ->update(['date_fin' => $request->input('date_fin')]);
+            ->update(['code_potal' => $request->input('code-postal')]);
         
-        return AOController::show($id);
+        DB::table('structure')
+            ->where('id', $request->input('id'))
+            ->update(['siret' => $request->input('siret')]);
+        
+        DB::table('structure')
+            ->where('id', $request->input('id'))
+            ->update(['effectif' => $request->input('effectif')]);
+        
+        return StructureController::show($id);
     }
 
     /**
@@ -105,9 +115,7 @@ class AOController extends Controller
      */
     public function destroy($id)
     {
-        DB::table('appel_offre')
-            ->where('id', $id)->delete();
-        
-        return redirect(url('/AppelOffreList'));
+        DB::table('structure')->where('id', $id)->delete();
+        return redirect(url('/StructureList'));
     }
 }
