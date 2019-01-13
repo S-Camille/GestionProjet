@@ -18,7 +18,7 @@
                         @if(session('type_personne')=="commanditaire" && !session('aEntreprise'))
                             <div>Avant toute chose veuillez renseigner votre entreprise</div>
                             <a class="choice-btn" href="{{ route('register_structure') }}">Ajouter mon entreprise</a>
-                        @elseif(session('type_personne')=="soumissionnaire")
+                        @elseif(session('type_personne')=="soumissionnaire" && !session('aEntreprise'))
                             <div>Avant toute chose veuillez renseigner votre lieu de travail</div>
                             <a class="choice-btn" href="{{ route('register_structure') }}">Ajouter mon lieu de travail</a>
                         @endif

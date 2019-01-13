@@ -28,13 +28,11 @@ class HomeController extends Controller
         if(Auth::check()){
             $type_personne = DB::table('users')->select('statut')->where('id',Auth::id())->pluck('statut');
             session(['type_personne' => $type_personne[0]]);
-            $gerants = DB::table('entreprise')->select('id_gerant')->pluck('id_gerant');
-            session(['aEntreprise' => false]);
-            foreach($gerants as $gerant){
-                if($gerant==Auth::id()){
-                    session(['aEntreprise' => true]);
-                }
-            }
+
+            //checks if the logged in user has entered the info
+            $gerants = DB::table('entreprise')->select('id_gerant')->where('id_gerant',Auth::id())->pluck('id_gerant');
+            session(['aEntreprise' => empty($gerants)]);
+
         }
 
         return view('home');
