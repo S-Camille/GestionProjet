@@ -36,12 +36,19 @@ class Entreprise extends Model
         if(empty($this->code_postal)){
             $this->errors[] = _('Vous devez rentrer un code postal');
         }
-        if(empty($this->siret)){
-            $this->errors[] = _('Vous devez indiquer le numéro de siret de l\'entreprise');
+        if(empty($this->statut)){
+            $this->errors[] = _('Vous devez choisir un statut pour votre structure');
+        } else if($this->statut){ //si c'est une entreprise
+            if(empty($this->siret)){
+                $this->errors[] = _('Vous devez indiquer le numéro de siret de l\'entreprise');
+            } else if(strlen($this->siret) > 14){
+                $this->errors[] = _('Siret trop long');
+            }
+            if(empty($this->effectif)){
+                $this->errors[] = _('Vous devez rentrer un effectif');           
+            }
         }
-        if(empty($this->effectif)){
-            $this->errors[] = _('Vous devez rentrer un effectif');           
-        }
+        
         return empty($this->errors);
     }
 }
