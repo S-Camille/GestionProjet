@@ -26,15 +26,22 @@ class HomeController extends Controller
     public function index()
     {
         if(Auth::check()){
-            $type_personne = DB::table('users')->select('statut')->where('id',Auth::id())->pluck('statut');
-            session(['type_personne' => $type_personne[0]]);
+            $statutResult = DB::table('users')->select('statut')->where('id',Auth::id())->pluck('statut');
+            $type_personne=$statutResult[0];
 
-            //checks if the logged in user has entered the info
-            $gerants = DB::table('entreprise')->select('id_gerant')->where('id_gerant',Auth::id())->pluck('id_gerant');
-            session(['aEntreprise' => empty($gerants)]);
-
+            if($type_personne=='soumissionnaire'){ 
+                $hasEntreprise = DB::table('entreprise')->select('id')->where('id_gerant',Auth::id())->pluck('id');
+                session(['no_structure' => empty($hasEntreprise]);
+              
+                if(isset($hasEntreprise[0])){
+                    session(['no_structure' => false]);
+                    $hasExComptable = DB::table('exercice_comptable')->select('id')->where('id_entreprise',$hasEntreprise[0])->pluck('id');
+                    session(['no_ex_comptable' => empty($hasExComptable]);
+                }
+            }
+            
+            session(['type_personne' => $type_personne]);
         }
-
         return view('home');
     }
 }

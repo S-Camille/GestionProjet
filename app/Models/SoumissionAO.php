@@ -8,7 +8,7 @@ class SoumissionAO extends Model
 {
     protected $table = "soumission_appelOffre";
     protected $keyType = "string";
-    protected $incrementing = false;
+    public $incrementing = false;
 
     protected $fillable = [
         'name', 'email', 'password',

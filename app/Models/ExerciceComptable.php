@@ -9,10 +9,10 @@ class ExerciceComptable extends Model
 {
     protected $table = "exercice_comptable";
     protected $keyType = "string";
-    protected $incrementing = false;
+    public $incrementing = false;
 
     protected $fillable = [
-        'annee', 'chiffre'
+        'id','id_entreprise','annee', 'chiffre'
     ];
 
     public function findAll(){

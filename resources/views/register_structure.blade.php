@@ -1,7 +1,13 @@
 @extends('layouts.form')
 
 @section('formName')
-Enregistrement d'entreprise
+
+    @if(session('type_personne')=='soumissionnaire')
+    Enregistrement d'entreprise    
+    @elseif(session('type_personne')=='commanditaire')
+    Enregistrement du lieu de travail        
+    @endif
+
 @endsection
 
 @section('formHead')
@@ -9,6 +15,7 @@ Enregistrement d'entreprise
 @endsection
 
 @section('formContent')
+    @if(session('type_personne')=='soumissionnaire')
     <div class="form-group{{ $errors->has('nom') ? ' has-error' : '' }}">
         <label for="nom" class="col-md-4 control-label obligatoire">Nom</label>
 
@@ -22,6 +29,23 @@ Enregistrement d'entreprise
             @endif
         </div>
     </div>
+    @elseif(session('type_personne')=='commanditaire')
+        <div class="form-group{{ $errors->has('type_structure') ? ' has-error' : '' }}">
+            <label for="type_structure" class="col-md-4 control-label obligatoire">Type de lieu</label>
+
+            <div class="col-md-6">
+                <select id="type_structure" type="text" class="form-control" name="type_structure" value="{{ old('type_structure') }}" required autofocus>
+                    <option>Mairie</option>
+                </select>
+
+                @if ($errors->has('type_structure'))
+                    <span class="help-block">
+                        <strong>{{ $errors->first('type_structure') }}</strong>
+                    </span>
+                @endif
+            </div>
+        </div>
+    @endif
 
     <div class="form-group{{ $errors->has('voirie') ? ' has-error' : '' }}">
         <label for="voirie" class="col-md-4 control-label obligatoire">Voirie</label>
