@@ -31,12 +31,10 @@ class HomeController extends Controller
 
             if($type_personne=='soumissionnaire'){ 
                 $hasEntreprise = DB::table('entreprise')->select('id')->where('id_gerant',Auth::id())->pluck('id');
-                session(['no_structure' => empty($hasEntreprise]);
-              
+                session(['no_structure' => (sizeof($hasEntreprise)==0)]);
                 if(isset($hasEntreprise[0])){
-                    session(['no_structure' => false]);
                     $hasExComptable = DB::table('exercice_comptable')->select('id')->where('id_entreprise',$hasEntreprise[0])->pluck('id');
-                    session(['no_ex_comptable' => empty($hasExComptable]);
+                    session(['no_ex_comptable' => (sizeof($hasExComptable)==0)]);
                 }
             }
             
