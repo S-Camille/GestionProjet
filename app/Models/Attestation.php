@@ -22,4 +22,18 @@ class Attestation extends Model
     public function findById($id){
         return $this::find($id);
     }
+
+    public function isValid(){
+        if(empty($this->type)){
+            $this->errors[] = _('Vous devez rentrer un type d\'attestation');
+        }
+        if(empty($this->is_valid)){
+            $this->errors[] = _('Vous devez rentrer un statut valide ou non pour l\'attestation');
+        }
+        if(empty($this->lien)){
+            $this->errors[] = _('Vous devez fournir un exemplaire de l\'attestation');
+        }
+        
+        return empty($this->errors);
+    }
 }
