@@ -22,4 +22,21 @@ class AppelOffre extends Model
     public function findById($id){
         return $this::find($id);
     }
+
+    public function isValid(){
+        if(empty($this->titre)){
+            $this->errors[] = _('Vous devez rentrer un titre pour l\'appel d\'offre');
+        }
+        if(empty($this->description)){
+            $this->errors[] = _('Vous devez rentrer une description pour l\'appel d\'offre');
+        }
+        if(empty($this->date_debut)){
+            $this->errors[] = _('Vous devez rentrer une date de début pour l\'appel d\'offre');
+        }
+        if(empty($this->date_fin)){
+            $this->errors[] = _('Vous devez rentrer une date de fin pour l\'appel d\'offre');
+        }
+        
+        return empty($this->errors);
+    }
 }
