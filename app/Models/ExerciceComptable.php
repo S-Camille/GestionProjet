@@ -12,7 +12,7 @@ class ExerciceComptable extends Model
     public $incrementing = false;
 
     protected $fillable = [
-        'id','id_entreprise','annee', 'chiffre'
+        'id','id_entreprise','annee', 'chiffre','effectif'
     ];
 
     public function findAll(){

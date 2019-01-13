@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\ExerciceComptable;
+use App\Attestation;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
@@ -19,7 +20,11 @@ class registerExComptableController extends Controller
             'id_entreprise'=>$idEntreprise[0],
             'annee' => date('Y',strtotime("-1 year")),
             'chiffre' => $request->input('chiffre'),
-            'effectif' => $request->input('effectif')
+            'effectif' => $request->input('effectif'),
+            'lien_urssaf' => $request->input('urssaf'),
+            'lien_fiscale' => $request->input('fiscale'),
+            'lien_assurance' => $request->input('assurance'),
+            'lien_qualifPro' => $request->input('qualifPro'),
         );
 
         ExerciceComptable::create($data, [
@@ -27,7 +32,7 @@ class registerExComptableController extends Controller
             'id_entreprise' => $data['id_entreprise'],
             'annee' => $data['annee'],
             'chiffre' => $data['chiffre'], 
-            'effectif' => $data['effectif']       
+            'effectif' => $data['effectif'],      
         ]);        
 
         return redirect(action('HomeController@index'));
