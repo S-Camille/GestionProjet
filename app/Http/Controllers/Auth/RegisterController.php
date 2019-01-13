@@ -66,7 +66,7 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {        
-        return User::create([
+        $u = User::create([
             'id' => Uuid::generate(),
             'presentation' => $data['presentation'],
             'firstname' => $data['surname'],
@@ -76,5 +76,11 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
         ]);
+
+        if(!$u->isValid()){
+            return $u->errors;
+        }
+
+        return $u;
     }
 }
