@@ -13,7 +13,7 @@
                                 {{ session('status') }}
                             </div>
                         @endif
-                                                
+                        
                         <div class="flex-container column">
                         @if(session('type_personne')=="soumissionnaire")
                             @if(session('no_structure'))
@@ -22,6 +22,8 @@
                             @elseif(session('no_ex_comptable'))
                             <div>Vous n'avez plus qu'à renseigner votre exercice comptable</div>
                             <a class="choice-btn" href="{{ route('register_ex_comptable') }}">Ajouter mon exercice comptable</a>
+                            @else
+                            <div>Entreprise et exercice comptable renseignés !</div>
                             @endif
                         @elseif(session('type_personne')=="commanditaire")
                             <div>Avant toute chose veuillez renseigner votre lieu de travail</div>
