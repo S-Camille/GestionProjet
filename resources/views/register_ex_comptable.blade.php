@@ -11,7 +11,7 @@
 @endsection
 
 @section('formHead')
-    <form class="form-horizontal" method="POST" action="{{ route('register_structureCreation') }}">
+    <form class="form-horizontal" method="POST" action="{{ route('creation_ex_comptable') }}">
 @endsection
 
 @section('formContent')

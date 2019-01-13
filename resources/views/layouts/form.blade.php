@@ -15,6 +15,9 @@
 
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
+                                <a onclick="window.history.back()" class="btn">
+                                    Retour
+                                </a>
                                 <button type="submit" class="btn btn-primary">
                                     @yield('btnSubmitContent')
                                 </button>
