@@ -18,6 +18,7 @@ class CreateExComptableTable extends Migration
             $table->uuid('id_entreprise');
             $table->string('annee',4);
             $table->integer('chiffre');
+            $table->integer('effectif');
             $table->primary('id');
             $table->foreign('id_entreprise')->references('id')->on('entreprise');
             $table->timestamps();

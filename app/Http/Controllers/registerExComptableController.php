@@ -19,13 +19,15 @@ class registerExComptableController extends Controller
             'id_entreprise'=>$idEntreprise[0],
             'annee' => date('Y',strtotime("-1 year")),
             'chiffre' => $request->input('chiffre'),
+            'effectif' => $request->input('effectif')
         );
 
         ExerciceComptable::create($data, [
             'id' => $data['id'],
             'id_entreprise' => $data['id_entreprise'],
             'annee' => $data['annee'],
-            'chiffre' => $data['chiffre'],        
+            'chiffre' => $data['chiffre'], 
+            'effectif' => $data['effectif']       
         ]);        
 
         return redirect(action('HomeController@index'));
