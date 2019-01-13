@@ -12,7 +12,7 @@ class Attestation extends Model
     public $incrementing = false;
 
     protected $fillable = [
-        'id','id_entreprise','type', 'is_valid', 'lien',
+        'type', 'is_valid', 'lien',
     ];
 
     public function findAll(){
