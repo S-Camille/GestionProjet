@@ -15,7 +15,7 @@
                         @endif
                                                 
                         <div class="flex-container column">                        
-                        @if(session('type_personne')=="commanditaire")
+                        @if(session('type_personne')=="commanditaire" && !session('aEntreprise'))
                             <div>Avant toute chose veuillez renseigner votre entreprise</div>
                             <a class="choice-btn" href="{{ route('register_structure') }}">Ajouter mon entreprise</a>
                         @elseif(session('type_personne')=="soumissionnaire")
