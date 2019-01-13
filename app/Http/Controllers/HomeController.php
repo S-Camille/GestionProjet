@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
@@ -23,6 +25,11 @@ class HomeController extends Controller
      */
     public function index()
     {
+        if(Auth::check()){
+            $type_personne = DB::table('users')->select('statut')->where('id',Auth::id())->pluck('statut');
+            session(['type_personne' => $type_personne[0]]);
+        }
+
         return view('home');
     }
 }
