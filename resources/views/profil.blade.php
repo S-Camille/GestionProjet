@@ -8,7 +8,7 @@
                     <div class="panel-heading bigFont">{{$info_entreprise[0]->nom}}</div>
                     <div class="panel-body">                        
                         <label class="control-label">Ville</label><p>{{$info_entreprise[0]->ville}}</p>                        
-                        <label class="control-label">Effectif</label><p>{{$info_entreprise[0]->effectif}}</p>                        
+                        <label class="control-label">Addresse</label><p>{{$info_entreprise[0]->voirie}}</p>                        
                         <a href="">Voir plus d'informations</a>
                     </div>                        
                 </div>

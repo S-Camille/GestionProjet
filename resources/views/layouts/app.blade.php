@@ -84,7 +84,8 @@
                 <label class="control-label">Description</label><div class="description"></div>
                 <label class="control-label">Date début</label><div class="dtdeb"></div>
                 <label class="control-label">Date fin</label><div class="dtfin"></div>
-                <button class="btn">Notifier le MOA de mon intérêt</button>
+                <a class="structure_link" href="">Profil du commanditaire</a><br>
+                <!--<button class="btn">Notifier le commanditaire de mon intérêt</button>-->
             </div>
         </div>    
     </div>
@@ -94,7 +95,7 @@
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>   
     <script>
-        function get_detail_appel(id_appel){
+        function get_detail_appel(id_appel,id_structure){
             var xhttp = new XMLHttpRequest();
             var data = null;
 
@@ -108,11 +109,13 @@
                     var description = document.getElementsByClassName('description')[0];
                     var dtdeb = document.getElementsByClassName('dtdeb')[0];
                     var dtfin = document.getElementsByClassName('dtfin')[0];
+                    var structure_link=document.getElementsByClassName('structure_link')[0];
 
                     titre.innerHTML = $data.titre;
                     description.innerHTML = $data.description;
                     dtdeb.innerHTML = $data.date_debut;
                     dtfin.innerHTML = $data.date_fin;
+                    structure_link.href='http://localhost/GestionProjet/public/profil/'+id_structure;
 
                     hoverAll.style.display='block';
                 }

@@ -15,7 +15,7 @@ class profilController extends Controller
         $appel_offre=null;
 
         //Get firm information
-        $info_entreprise = DB::table('structure')->select('nom','ville','effectif','voirie','code_postal')->where('id',$id_structure)->get();        
+        $info_entreprise = DB::table('structure')->select('nom','ville','voirie','code_postal')->where('id',$id_structure)->get();        
 
         //Firm exists
         if(isset(($info_entreprise)[0])){

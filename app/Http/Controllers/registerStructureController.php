@@ -35,8 +35,7 @@ class registerStructureController extends Controller
             'statut' => $statut,
             'siret' => $siret,
             'voirie' => $request->input('voirie'),
-            'ville' => $request->input('ville'),
-            'effectif' => $request->input('effectif'),
+            'ville' => $request->input('ville'),            
             'code_postal' => $request->input('code_postal'),
         );
 
@@ -47,8 +46,7 @@ class registerStructureController extends Controller
             'statut'=> $data['statut'],
             'voirie' => $data['voirie'],
             'ville' => $data['ville'],
-            'siret' => $data['siret'],
-            'effectif' => $data['effectif'],
+            'siret' => $data['siret'],            
             'code_postal' => $data['code_postal'],
         ]);        
 

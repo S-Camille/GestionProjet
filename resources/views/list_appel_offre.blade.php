@@ -12,7 +12,7 @@
                         </div>
                         @if(sizeof($appel_offre)!=0)
                             @for ($i = 0; $i < sizeof($appel_offre); $i++)
-                                <div onclick="get_detail_appel('{{$appel_offre[$i]->id}}')" class="row list-elt">
+                                <div onclick="get_detail_appel('{{$appel_offre[$i]->id}}','{{$appel_offre[$i]->id_commanditaire}}')" class="row list-elt">
                                     <div class="col-xs-3 col-md-3">{{$appel_offre[$i]->titre}}</div><div class="col-xs-6 col-sd-7 col-md-7">{{$appel_offre[$i]->description}}</div><div class="col-sd-2 col-md-2">{{$appel_offre[$i]->date_fin}}</div>
                                 </div>
                             @endfor

@@ -104,20 +104,6 @@
         </div>
     </div>
     @endif
-
-    <div class="form-group{{ $errors->has('effectif') ? ' has-error' : '' }}">
-        <label for="effectif" class="col-md-4 control-label obligatoire">Effectif</label>
-
-        <div class="col-md-6">
-            <input id="effectif" type="text" class="form-control" name="effectif" value="{{ old('effectif') }}" required autofocus>
-
-            @if ($errors->has('effectif'))
-                <span class="help-block">
-                    <strong>{{ $errors->first('effectif') }}</strong>
-                </span>
-            @endif
-        </div>
-    </div>
 @endsection
 
 @section('btnSubmitContent')
