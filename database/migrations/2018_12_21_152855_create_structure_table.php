@@ -23,6 +23,7 @@ class CreateStructureTable extends Migration
             $table->string('code_postal',5);            
             $table->string('siret')->nullable();
             $table->integer('effectif')->nullable();
+            $table->string('presentation')->nullable();
             $table->primary('id');
             $table->foreign('id_representant')->references('id')->on('users');
             $table->timestamps();

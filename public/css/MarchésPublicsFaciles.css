@@ -58,3 +58,8 @@
     max-height: 370px;
     overflow: auto;
 }
+
+.create_appel_offre_header{
+    background: lightblue;
+    color: white;
+}

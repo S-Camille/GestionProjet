@@ -22,6 +22,12 @@ class profilController extends Controller
             //Get id_gerant
             $id_gerant = DB::table('structure')->select('id_representant')->where('id',$id_structure)->get();
             
+            if($id_gerant[0]->id_representant==Auth::id()){
+                session(['isSelfProfil'=>true]);
+            }else{
+                session(['isSelfProfil'=>false]);
+            }
+
             //Get gerant information
             $info_gerant = DB::table('users')->select('firstname','lastname','telephone','email','statut')->where('id',$id_gerant[0]->id_representant)->get();                        
 
