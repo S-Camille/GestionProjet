@@ -26,11 +26,17 @@ class profilController extends Controller
             $info_gerant = DB::table('users')->select('firstname','lastname','telephone','email','statut')->where('id',$id_gerant[0]->id_representant)->get();                        
 
             //Get every appel_offre
-            $appel_offre = DB::table('appel_offre')->select('titre','description','date_fin')->where('id_commanditaire',$id_structure)->get();
+            $appel_offre = DB::table('appel_offre')->select('id','titre','description','date_fin')->where('id_commanditaire',$id_structure)->get();
 
             return view('profil')->with('appel_offre',$appel_offre)->with('info_entreprise',$info_entreprise)->with('info_gerant',$info_gerant);
         }else{ //no firm with this id
             return abort(404);        
         }
+    }
+
+    protected function getIdAppelOffre($id_appel){
+        $result = DB::table('appel_offre')->select('titre','description','date_debut','date_fin')->where('id',$id_appel)->get();
+        return response()
+            ->json($result[0],200, ['Content-type'=> 'application/json; charset=utf-8'], JSON_UNESCAPED_UNICODE);
     }
 }

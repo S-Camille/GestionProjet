@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 class listAppelOffreController extends Controller
 {
     protected function index(){
-        $appel_offre = DB::table('appel_offre')->select('titre','description','date_fin')->get();
+        $appel_offre = DB::table('appel_offre')->select('id','titre','description','date_fin')->get();
 
         return view('list_appel_offre')->with('appel_offre',$appel_offre);
     }

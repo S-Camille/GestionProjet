@@ -48,3 +48,5 @@ Route::get('/list_appel_offre','listAppelOffreController@index')->name('list_app
 
 Route::view('/register_appel_offre','createAppelOffre')->name('register_appel_offre');
 Route::post('/creation_appel_offre','registerAppelOffreController@create')->name('creation_appel_offre');
+
+Route::get('/detail/{id_appel_offre}','profilController@getIdAppelOffre')->name('get_detail_appel_offre');

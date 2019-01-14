@@ -75,11 +75,51 @@
                 </div>
             </div>
         </nav>
-
+        <div id="hover-all" style="display:none;position: absolute;background: rgba(0,0,0,0.4);height: 100%;top: 0;width: 100%;left: 0;z-index: 2;">        
+        <div class="panel col-md-4" style="height:370px; margin: auto; position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px;">
+            <div onclick="this.parentNode.parentNode.style.display='none'" style="cursor:pointer;position: absolute;right: 0;margin: 1%;" class="cross-pop-up">X</div>    
+            <div class="panel-heading bigFont centerText">Détail appel d'offre</div>            
+            <div class="panel-body">
+                <label class="control-label">Titre</label><div class="titre"></div>
+                <label class="control-label">Description</label><div class="description"></div>
+                <label class="control-label">Date début</label><div class="dtdeb"></div>
+                <label class="control-label">Date fin</label><div class="dtfin"></div>
+                <button class="btn">Notifier le MOA de mon intérêt</button>
+            </div>
+        </div>    
+    </div>
         @yield('content')
     </div>
 
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}"></script>
+    <script src="{{ asset('js/app.js') }}"></script>   
+    <script>
+        function get_detail_appel(id_appel){
+            var xhttp = new XMLHttpRequest();
+            var data = null;
+
+            xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    $data = JSON.parse(xhttp.response);
+                    console.log($data);                    
+                    
+                    var hoverAll = document.getElementById('hover-all');
+                    var titre = document.getElementsByClassName('titre')[0];
+                    var description = document.getElementsByClassName('description')[0];
+                    var dtdeb = document.getElementsByClassName('dtdeb')[0];
+                    var dtfin = document.getElementsByClassName('dtfin')[0];
+
+                    titre.innerHTML = $data.titre;
+                    description.innerHTML = $data.description;
+                    dtdeb.innerHTML = $data.date_debut;
+                    dtfin.innerHTML = $data.date_fin;
+
+                    hoverAll.style.display='block';
+                }
+            };
+            xhttp.open("GET", "http://localhost/GestionProjet/public/detail/"+id_appel, true);
+            xhttp.send();            
+        }
+    </script> 
 </body>
 </html>
