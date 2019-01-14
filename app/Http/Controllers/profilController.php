@@ -20,19 +20,13 @@ class profilController extends Controller
         //Firm exists
         if(isset(($info_entreprise)[0])){
             //Get id_gerant
-            $id_gerant = DB::table('structure')->select('id_representant')->where('id',$id_structure)->get();
-            
-            if($id_gerant[0]->id_representant==Auth::id()){
-                session(['isSelfProfil'=>true]);
-            }else{
-                session(['isSelfProfil'=>false]);
-            }
+            $id_gerant = DB::table('structure')->select('id_representant')->where('id',$id_structure)->get();                    
 
             //Get gerant information
             $info_gerant = DB::table('users')->select('firstname','lastname','telephone','email','statut')->where('id',$id_gerant[0]->id_representant)->get();                        
 
             //Get every appel_offre
-            $appel_offre = DB::table('appel_offre')->select('titre','description','date_fin')->where('id',$id_structure)->get();
+            $appel_offre = DB::table('appel_offre')->select('titre','description','date_fin')->where('id_commanditaire',$id_structure)->get();
 
             return view('profil')->with('appel_offre',$appel_offre)->with('info_entreprise',$info_entreprise)->with('info_gerant',$info_gerant);
         }else{ //no firm with this id

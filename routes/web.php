@@ -45,3 +45,6 @@ Route::post('/creation_ex_comptable','registerExComptableController@create')->na
 Route::get('/profil/{id}','profilController@index')->name('profil');
 
 Route::get('/list_appel_offre','listAppelOffreController@index')->name('list_appel_offre');
+
+Route::view('/register_appel_offre','createAppelOffre')->name('register_appel_offre');
+Route::post('/creation_appel_offre','registerAppelOffreController@create')->name('creation_appel_offre');

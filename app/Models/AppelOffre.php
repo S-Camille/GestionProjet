@@ -12,7 +12,7 @@ class AppelOffre extends Model
     public $incrementing = false;
     
     protected $fillable = [
-        'titre', 'description', 'date_debut','date_fin'
+        'id','id_commanditaire','titre', 'description', 'date_debut','date_fin'
     ];
 
     public function findAll(){

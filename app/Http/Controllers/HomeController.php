@@ -28,6 +28,7 @@ class HomeController extends Controller
         if(Auth::check()){
             $statutResult = DB::table('users')->select('statut')->where('id',Auth::id())->pluck('statut');
             $type_personne=$statutResult[0];
+            session(['type_personne' => $type_personne]);
         
             $hasEntreprise = DB::table('structure')->select('id')->where('id_representant',Auth::id())->pluck('id');
             session(['no_structure' => (sizeof($hasEntreprise)==0)]);
@@ -43,9 +44,7 @@ class HomeController extends Controller
                 }else if(isset($hasEntreprise[0])){
                     $id = DB::table('structure')->select('id')->where('id_representant',Auth::id())->get()[0]->id;
                     return redirect(route('profil',array('id'=>$id)));
-                }
-            
-            session(['type_personne' => $type_personne]);
+                }                        
         }
         return view('home');
     }
